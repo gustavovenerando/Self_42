@@ -26,6 +26,9 @@ void ft_second_number(int fn_fd, int fn_sd){
                 ft_space();
                 ft_putchar(sn_first_digit);
                 ft_putchar(sn_second_digit);
+                if(fn_fd == '9' && fn_sd == '8'){
+                    return;
+                }
                 ft_commas();
             }
             sn_second_digit++;
