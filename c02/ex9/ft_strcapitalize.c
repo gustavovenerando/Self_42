@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-int char_is_letter(char c) {
+int char_is_alphanumeric(char c) {
     if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || (c>=48 && c<=57)) return 1;
     return 0;
 }
@@ -32,9 +32,9 @@ char* ft_strcapitalize(char *str){
         char last = '\0';
         if(str_temp - 1) last = *(str_temp - 1);
 
-        if(!char_is_letter(last)) new_char = char_to_uppercase(*str_temp);
+        if(!char_is_alphanumeric(last)) new_char = char_to_uppercase(*str_temp);
         else{
-            if(char_is_letter(curr)) new_char = char_to_lowercase(*str_temp);
+            if(char_is_alphanumeric(curr)) new_char = char_to_lowercase(*str_temp);
         }
 
         *str_temp = new_char;
