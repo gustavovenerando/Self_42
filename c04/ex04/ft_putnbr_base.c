@@ -47,14 +47,13 @@ void ft_putnbr_base(int nbr, char *base){
         return;
     }
 
-    while(num_digits > 1){
+    while(num_digits > 0){
         int remainder = nbr % base_int;
         *(str + i) = base[remainder];
         nbr = nbr/base_int;
         num_digits--;
         i++;
     }
-    *(str + i) = base[nbr];
     
     for(int j = i; j >= 0; j--){
         print_char(str[j]);
@@ -72,7 +71,7 @@ int main(){
     // printf("\n");
     //
     // printf("Hexidecimal number: ");
-    ft_putnbr_base(3, hex);
+    ft_putnbr_base(178, hex);
     printf("\n");
     // printf("Binary number: ");
     // ft_putnbr_base(1234, bin);
