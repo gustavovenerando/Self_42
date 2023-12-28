@@ -25,25 +25,7 @@ int count_digits(int num, int base){
     return count;
 }
 
-void print_decimal(int n){
-    if(n < 0){
-        n = -n;
-        print_char('-');
-    }
-
-    if(n > 10){
-        print_decimal(n/10);
-    }
-
-    int remainder = n % 10;
-    char int_as_char = remainder + 48;
-
-    print_char(int_as_char);
-}
-//
 void ft_putnbr_base(int nbr, char *base){
-    //O primeiro digito vem da divisao
-    //Os outros vem do resto da divisao
     char str[30] = "";
     int i = 0;
 
@@ -67,38 +49,17 @@ void ft_putnbr_base(int nbr, char *base){
 
     while(num_digits > 1){
         int remainder = nbr % base_int;
-        // print_char(base[remainder]);
         *(str + i) = base[remainder];
         nbr = nbr/base_int;
         num_digits--;
         i++;
     }
     *(str + i) = base[nbr];
-    // print_char(base[nbr]);
     
     for(int j = i; j >= 0; j--){
         print_char(str[j]);
     }
 }
-
-
-//Tentativa por recursao, nao functiona para hex menor que 16
-// void ft_putnbr_base(int nbr, char *base){
-//     int base_int = str_length(base);
-//     int num_digits = count_digits(nbr, base_int);
-//     int remainder = nbr % base_int;
-//
-//     if (num_digits > 1) {
-//         nbr = nbr / base_int;
-//         ft_putnbr_base(nbr, base);
-//     }
-//     else{
-//         print_char(base[nbr]);
-//         return;
-//     }
-//
-//     print_char(base[remainder]);
-// }
 
 int main(){
     char dec[] = "0123456789";
@@ -111,7 +72,7 @@ int main(){
     // printf("\n");
     //
     // printf("Hexidecimal number: ");
-    ft_putnbr_base(-13, hex);
+    ft_putnbr_base(3, hex);
     printf("\n");
     // printf("Binary number: ");
     // ft_putnbr_base(1234, bin);
