@@ -35,7 +35,7 @@ int do_exp(int num, int exp_num){
     return final_num;
 }
 
-int convert_to_int(char *str, char *base){
+int convert_to_int(char *str, char *base, int num_sign){
     int s_length = str_length(str);
     int num_base = str_length(base);
     int final_num = 0;
@@ -48,7 +48,7 @@ int convert_to_int(char *str, char *base){
         final_num += curr_num*do_exp(num_base, exp_num);
     }
 
-    return final_num;
+    return final_num*num_sign;
 }
 
 int check_duplicates(char *base, int base_size){
@@ -105,10 +105,12 @@ int is_char_in_base(char *base, char c){
 
 }
 
-void char_atoi(char *str, char *dst, char *base){
+void char_atoi(char *str, char *dst, char *base, int *num_sign){
     int num_has_started = 0;
+    int cont_minus = 0;
     while(*str){
         int char_in_base = is_char_in_base(base, *str);
+        if(*str == '-') cont_minus++;
         if(*str != ' ' && *str != '-' && *str != '+' && char_in_base){
             num_has_started = 1;
             *dst = *str;
@@ -123,27 +125,33 @@ void char_atoi(char *str, char *dst, char *base){
     }
 
     *dst = '\0';
+    
+    if(cont_minus%2 == 0) *num_sign = 1;
+    else *num_sign = -1;
 }
 
 int ft_atoi_base(char *str, char *base){
     int base_size = str_length(base);
     int str_size = str_length(str);
 
+    //New str following atoi logic
     char new_str[str_size];
-    char_atoi(str, new_str, base);
+    int num_sign;
+    char_atoi(str, new_str, base, &num_sign);
     int new_str_size = str_length(new_str);
     printf("New STR: %s\n", new_str);
 
+    //Validation
     int is_valid = validation(new_str, base, base_size, new_str_size);
     printf("Validation result: %d\n", is_valid);
     if(!is_valid) return 0;
 
-    return convert_to_int(new_str, base);
+    return convert_to_int(new_str, base, num_sign);
 }
 
 int main(){
     char base[] = "0123456789ABCDEF";
-    char num[] = " -+  4EH";
+    char num[] = " --+  4EH";
 
     int res = ft_atoi_base(num, base);
 
