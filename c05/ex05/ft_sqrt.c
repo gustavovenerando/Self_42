@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-int ft_is_prime(int nb){
+int ft_sqrt(int nb){
     int res = 1;
 
     while(res*res < nb)
@@ -13,6 +13,6 @@ int ft_is_prime(int nb){
 }
 
 int main(){
-    int res = ft_is_prime(4);
+    int res = ft_sqrt(4);
     printf("Result: %d\n", res);
 }
