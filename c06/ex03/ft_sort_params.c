@@ -7,6 +7,7 @@ void print_str(char *str){
         write(1, &c, 1);
         str++;
     }
+
     write(1, "\n", 1);
 }
 
